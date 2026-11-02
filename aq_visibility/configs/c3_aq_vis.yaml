@@ -1,0 +1,11 @@
+variant: C3
+package: aq_visibility
+description: AQ + visibility head; L_vis on occluded image
+use_attr_queries: true
+use_visibility: true
+use_occlusion_pairs: true
+lambda_v: 0.5
+lambda_c: 0.0
+use_background: false
+epochs: 30
+seed: 42

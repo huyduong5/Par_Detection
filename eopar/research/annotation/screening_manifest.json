@@ -1,0 +1,13 @@
+{
+  "seed": 42,
+  "candidate_images": {
+    "val": 400,
+    "test": 1200
+  },
+  "target_human_accepted": {
+    "val": 200,
+    "test": 600
+  },
+  "human_natural_occlusion_confirmed": false,
+  "note": "Candidates only; human screen/stratification/adjudication and final lock still required"
+}

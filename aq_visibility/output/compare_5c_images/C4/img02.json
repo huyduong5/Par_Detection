@@ -1,0 +1,387 @@
+{
+  "variant": "C4",
+  "image_id": "img02",
+  "imgname": "part16_20231212032414_03699_005.jpg",
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 10,
+    "fp": 0,
+    "fn": 0,
+    "tn": 47,
+    "n_correct_attrs": 57,
+    "n_attrs": 57,
+    "n_pred_pos": 10,
+    "n_gt_pos": 10
+  },
+  "gt_positive": [
+    "Adult",
+    "Normal",
+    "Hat",
+    "Gloves",
+    "Front",
+    "Long sleeves",
+    "Cotton-padded coat",
+    "Trousers",
+    "Casual shoes",
+    "Standing"
+  ],
+  "pred_positive": [
+    "Adult",
+    "Normal",
+    "Hat",
+    "Gloves",
+    "Front",
+    "Long sleeves",
+    "Cotton-padded coat",
+    "Trousers",
+    "Casual shoes",
+    "Standing"
+  ],
+  "preds": [
+    {
+      "attr": "Female",
+      "prob": 0.2273,
+      "pred": 0,
+      "vis": 0.7124
+    },
+    {
+      "attr": "Child",
+      "prob": 0.3262,
+      "pred": 0,
+      "vis": 0.6685
+    },
+    {
+      "attr": "Adult",
+      "prob": 0.7583,
+      "pred": 1,
+      "vis": 0.6392
+    },
+    {
+      "attr": "Elderly",
+      "prob": 0.0004,
+      "pred": 0,
+      "vis": 0.7598
+    },
+    {
+      "attr": "Fat",
+      "prob": 0.0728,
+      "pred": 0,
+      "vis": 0.7603
+    },
+    {
+      "attr": "Normal",
+      "prob": 0.9404,
+      "pred": 1,
+      "vis": 0.7183
+    },
+    {
+      "attr": "Thin",
+      "prob": 0.0015,
+      "pred": 0,
+      "vis": 0.8022
+    },
+    {
+      "attr": "Bald",
+      "prob": 0.0007,
+      "pred": 0,
+      "vis": 0.8516
+    },
+    {
+      "attr": "Long hair",
+      "prob": 0.0426,
+      "pred": 0,
+      "vis": 0.8398
+    },
+    {
+      "attr": "Black hair",
+      "prob": 0.0519,
+      "pred": 0,
+      "vis": 0.8525
+    },
+    {
+      "attr": "Hat",
+      "prob": 0.9839,
+      "pred": 1,
+      "vis": 0.8511
+    },
+    {
+      "attr": "Glasses",
+      "prob": 0.1428,
+      "pred": 0,
+      "vis": 0.8398
+    },
+    {
+      "attr": "Mask",
+      "prob": 0.0105,
+      "pred": 0,
+      "vis": 0.8433
+    },
+    {
+      "attr": "Helmet",
+      "prob": 0.0137,
+      "pred": 0,
+      "vis": 0.8584
+    },
+    {
+      "attr": "Scarf",
+      "prob": 0.0661,
+      "pred": 0,
+      "vis": 0.8589
+    },
+    {
+      "attr": "Gloves",
+      "prob": 0.9648,
+      "pred": 1,
+      "vis": 0.8623
+    },
+    {
+      "attr": "Front",
+      "prob": 0.8813,
+      "pred": 1,
+      "vis": 0.6909
+    },
+    {
+      "attr": "Back",
+      "prob": 0.222,
+      "pred": 0,
+      "vis": 0.6079
+    },
+    {
+      "attr": "Side",
+      "prob": 0.0336,
+      "pred": 0,
+      "vis": 0.7661
+    },
+    {
+      "attr": "Short sleeves",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8555
+    },
+    {
+      "attr": "Long sleeves",
+      "prob": 0.9995,
+      "pred": 1,
+      "vis": 0.8389
+    },
+    {
+      "attr": "Shirt",
+      "prob": 0.0004,
+      "pred": 0,
+      "vis": 0.8555
+    },
+    {
+      "attr": "Jacket",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8628
+    },
+    {
+      "attr": "Suit",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8662
+    },
+    {
+      "attr": "Vest",
+      "prob": 0.0001,
+      "pred": 0,
+      "vis": 0.8589
+    },
+    {
+      "attr": "Cotton-padded coat",
+      "prob": 1.0,
+      "pred": 1,
+      "vis": 0.834
+    },
+    {
+      "attr": "Coat",
+      "prob": 0.0002,
+      "pred": 0,
+      "vis": 0.8721
+    },
+    {
+      "attr": "Graduation gown",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8516
+    },
+    {
+      "attr": "Chef uniform",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8662
+    },
+    {
+      "attr": "Trousers",
+      "prob": 0.9995,
+      "pred": 1,
+      "vis": 0.8022
+    },
+    {
+      "attr": "Shorts",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8335
+    },
+    {
+      "attr": "Jeans",
+      "prob": 0.0001,
+      "pred": 0,
+      "vis": 0.8599
+    },
+    {
+      "attr": "Long skirt",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8516
+    },
+    {
+      "attr": "Short skirt",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.8398
+    },
+    {
+      "attr": "Dress",
+      "prob": 0.0101,
+      "pred": 0,
+      "vis": 0.8633
+    },
+    {
+      "attr": "Leather shoes",
+      "prob": 0.0436,
+      "pred": 0,
+      "vis": 0.2411
+    },
+    {
+      "attr": "Casual shoes",
+      "prob": 0.8599,
+      "pred": 1,
+      "vis": 0.1819
+    },
+    {
+      "attr": "Boots",
+      "prob": 0.4429,
+      "pred": 0,
+      "vis": 0.1445
+    },
+    {
+      "attr": "Sandals",
+      "prob": 0.0002,
+      "pred": 0,
+      "vis": 0.1956
+    },
+    {
+      "attr": "Other shoes",
+      "prob": 0.0075,
+      "pred": 0,
+      "vis": 0.1804
+    },
+    {
+      "attr": "Backpack",
+      "prob": 0.1501,
+      "pred": 0,
+      "vis": 0.8521
+    },
+    {
+      "attr": "Shoulder bag",
+      "prob": 0.0338,
+      "pred": 0,
+      "vis": 0.8491
+    },
+    {
+      "attr": "Handbag",
+      "prob": 0.0033,
+      "pred": 0,
+      "vis": 0.8652
+    },
+    {
+      "attr": "Plastic bag",
+      "prob": 0.0056,
+      "pred": 0,
+      "vis": 0.8574
+    },
+    {
+      "attr": "Paper bag",
+      "prob": 0.0001,
+      "pred": 0,
+      "vis": 0.8638
+    },
+    {
+      "attr": "Suitcase",
+      "prob": 0.0001,
+      "pred": 0,
+      "vis": 0.8564
+    },
+    {
+      "attr": "Others",
+      "prob": 0.0009,
+      "pred": 0,
+      "vis": 0.4988
+    },
+    {
+      "attr": "Making a phone call",
+      "prob": 0.0032,
+      "pred": 0,
+      "vis": 0.7661
+    },
+    {
+      "attr": "Smoking",
+      "prob": 0.0001,
+      "pred": 0,
+      "vis": 0.8154
+    },
+    {
+      "attr": "Hands behind back",
+      "prob": 0.0005,
+      "pred": 0,
+      "vis": 0.7539
+    },
+    {
+      "attr": "Arms crossed",
+      "prob": 0.0302,
+      "pred": 0,
+      "vis": 0.8149
+    },
+    {
+      "attr": "Walking",
+      "prob": 0.4668,
+      "pred": 0,
+      "vis": 0.3835
+    },
+    {
+      "attr": "Running",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.6909
+    },
+    {
+      "attr": "Standing",
+      "prob": 0.8452,
+      "pred": 1,
+      "vis": 0.3086
+    },
+    {
+      "attr": "Riding a bicycle",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.7207
+    },
+    {
+      "attr": "Riding an scooter",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.7393
+    },
+    {
+      "attr": "Riding a skateboard",
+      "prob": 0.0,
+      "pred": 0,
+      "vis": 0.4932
+    }
+  ]
+}

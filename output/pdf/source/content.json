@@ -1,0 +1,432 @@
+{
+  "title": "Nhận dạng thuộc tính người đi bộ\ntrong điều kiện suy giảm\nbằng chứng ảnh",
+  "author": "Dương Quang Huy - 23001524",
+  "date": "02/11/2026",
+  "sections": [
+    "Giới thiệu và tổng quan",
+    "Đối tượng nghiên cứu",
+    "Lý thuyết và phương pháp",
+    "Thực nghiệm",
+    "Kết luận và mở rộng"
+  ],
+  "pages": [
+    {
+      "kind": "cover",
+      "title": ""
+    },
+    {
+      "kind": "agenda",
+      "title": "Nội dung"
+    },
+    {
+      "kind": "divider",
+      "title": "Giới thiệu và tổng quan",
+      "section": 0
+    },
+    {
+      "kind": "problem",
+      "title": "Đặt vấn đề"
+    },
+    {
+      "kind": "survey",
+      "title": "Tổng quan các hướng tiếp cận"
+    },
+    {
+      "kind": "divider",
+      "title": "Đối tượng nghiên cứu",
+      "section": 1
+    },
+    {
+      "kind": "dataset",
+      "title": "Bộ dữ liệu nghiên cứu"
+    },
+    {
+      "kind": "task",
+      "title": "Đặc tả bài toán PAR"
+    },
+    {
+      "kind": "divider",
+      "title": "Lý thuyết và phương pháp",
+      "section": 2
+    },
+    {
+      "kind": "theory",
+      "title": "Cơ sở lý thuyết"
+    },
+    {
+      "kind": "architecture",
+      "title": "Kiến trúc baseline AQ + Visibility"
+    },
+    {
+      "kind": "multiscale",
+      "title": "Đặc trưng đa tỉ lệ và các biến thể"
+    },
+    {
+      "kind": "visibility",
+      "title": "Visibility và consistency"
+    },
+    {
+      "kind": "eopar",
+      "title": "Hướng đề xuất: EOPAR"
+    },
+    {
+      "kind": "loss",
+      "title": "Hàm mất mát và mục tiêu học"
+    },
+    {
+      "kind": "divider",
+      "title": "Thực nghiệm",
+      "section": 3
+    },
+    {
+      "kind": "setup",
+      "title": "Thiết lập thực nghiệm và kiểm thử"
+    },
+    {
+      "kind": "results",
+      "title": "Kết quả baseline đã xác minh"
+    },
+    {
+      "kind": "resolution",
+      "title": "Đánh giá khi giảm độ phân giải ×2 / ×4 / ×8"
+    },
+    {
+      "kind": "divider",
+      "title": "Kết luận và mở rộng",
+      "section": 4
+    },
+    {
+      "kind": "conclusion",
+      "title": "Kết luận và giới hạn"
+    },
+    {
+      "kind": "future",
+      "title": "Hướng nghiên cứu tiếp theo"
+    },
+    {
+      "kind": "references",
+      "title": "Tài liệu tham khảo"
+    },
+    {
+      "kind": "thanks",
+      "title": ""
+    }
+  ],
+  "references": [
+    {
+      "id": 1,
+      "text": "J. Jin et al. Pedestrian Attribute Recognition: A New Benchmark Dataset and A Large Language Model Augmented Framework. AAAI, 2025; preprint 2024.",
+      "url": "https://arxiv.org/abs/2408.09720"
+    },
+    {
+      "id": 2,
+      "text": "X. Wang et al. An Empirical Study of Mamba-based Pedestrian Attribute Recognition. arXiv:2407.10374, 2024.",
+      "url": "https://arxiv.org/abs/2407.10374"
+    },
+    {
+      "id": 3,
+      "text": "A. Gu, T. Dao. Mamba: Linear-Time Sequence Modeling with Selective State Spaces. arXiv:2312.00752, 2023/2024.",
+      "url": "https://arxiv.org/abs/2312.00752"
+    },
+    {
+      "id": 4,
+      "text": "Y. Liu et al. VMamba: Visual State Space Model. NeurIPS, 2024.",
+      "url": "https://arxiv.org/abs/2401.10166"
+    },
+    {
+      "id": 5,
+      "text": "D. Hendrycks, T. Dietterich. Benchmarking Neural Network Robustness to Common Corruptions and Perturbations. ICLR, 2019.",
+      "url": "https://arxiv.org/abs/1903.12261"
+    },
+    {
+      "id": 6,
+      "text": "A. Shocher, N. Cohen, M. Irani. Zero-Shot Super-Resolution using Deep Internal Learning. CVPR, 2018.",
+      "url": "https://www.wisdom.weizmann.ac.il/~vision/zssr/"
+    }
+  ],
+  "copy": {
+    "s001": "Một ảnh người đi bộ → nhiều nhãn ngữ nghĩa",
+    "s002": [
+      "Nhóm",
+      "Ví dụ nhãn dương trong ảnh"
+    ],
+    "s003": [
+      [
+        "Trang phục",
+        "Tay áo ngắn; quần ngắn"
+      ],
+      [
+        "Giày dép",
+        "Dép / sandals"
+      ],
+      [
+        "Tư thế",
+        "Đứng; góc nhìn bên"
+      ]
+    ],
+    "s004": "Ứng dụng: tìm kiếm người, hỗ trợ theo dõi<br/>và tái định danh bằng mô tả thuộc tính.",
+    "s005": "Minh họa từ validation MSP60K; nhãn là annotation của dataset, không phải dự đoán mô hình. [1]",
+    "s006": "Từ biểu diễn ảnh đến mô hình hóa quan hệ thuộc tính",
+    "s007": [
+      "Hướng",
+      "Công trình / vai trò",
+      "Điều rút ra cho dự án"
+    ],
+    "s008": [
+      [
+        "Thị giác–ngôn ngữ",
+        "MSP60K / LLM-PAR [1]",
+        "Query và đặc trưng cục bộ đã có tiền lệ."
+      ],
+      [
+        "State-space / hybrid",
+        "Mamba-based PAR [2]",
+        "Ghép Mamba–Transformer không tự tạo novelty."
+      ],
+      [
+        "Backbone hiệu quả",
+        "Mamba [3], VMamba [4]",
+        "Nền trích xuất đặc trưng và phụ thuộc dài hạn."
+      ],
+      [
+        "Robustness",
+        "Corruption benchmark [5]",
+        "Cần operator cố định và cùng tập ảnh đánh giá."
+      ]
+    ],
+    "s009": "Câu hỏi nghiên cứu: khi mất bằng chứng, mô hình có nhận ra<br/>giới hạn quan sát thay vì chỉ dựa vào tương quan thuộc tính?",
+    "s010": "Khoảng trống EOPAR còn cần đối chiếu sâu với các phương pháp observability/uncertainty gần nhất.",
+    "s011": "MSP60K: 60.122 ảnh, 57 thuộc tính, 8 bối cảnh [1]",
+    "s012": [
+      "Partition",
+      "Số ảnh",
+      "Vai trò"
+    ],
+    "s013": [
+      [
+        "Train",
+        "30.298",
+        "Huấn luyện baseline theo random split"
+      ],
+      [
+        "Validation",
+        "6.002",
+        "Chọn checkpoint; smoke và kiểm tra pipeline"
+      ],
+      [
+        "Test",
+        "23.822",
+        "Báo kết quả sau khi cố định protocol"
+      ]
+    ],
+    "s014": [
+      "Giữ nguyên split chính thức; phát hiện 43 lần trùng byte giữa các partition.",
+      "Có tập đánh giá bổ sung loại trùng: 5.995 val và 23.786 test.",
+      "PA100K / RAPv1 và MSP60K cross-domain: kế hoạch mở rộng, chưa báo kết quả."
+    ],
+    "s015": "Nguồn đếm: split audit và manifest benchmark; audit trùng byte chưa loại trừ trùng identity / ảnh gần giống.",
+    "s016": "Phân loại đa nhãn ở cấp độ ảnh",
+    "s017": "Ảnh RGB",
+    "s018": "Kích thước gốc W × H",
+    "s019": "Mô hình PAR",
+    "s020": "Biểu diễn ảnh + thuộc tính",
+    "s021": "57 xác suất",
+    "s022": "p(a₁), …, p(a₅₇)",
+    "s023": "Nhãn y ∈ {0,1}<super>57</super> ; dự đoán dương khi p(a) &gt; 0,5.",
+    "s024": [
+      "Khó khăn",
+      "Hệ quả cần kiểm tra"
+    ],
+    "s025": [
+      [
+        "Che khuất / crop / tư thế",
+        "Không quan sát được ≠ thuộc tính không tồn tại"
+      ],
+      [
+        "Độ phân giải thấp",
+        "Chi tiết kính, phụ kiện và giày có thể mất"
+      ],
+      [
+        "Mất cân bằng / tương quan nhãn",
+        "Điểm tốt chưa chứng minh sử dụng đúng bằng chứng"
+      ]
+    ],
+    "s026": "Ba nền tảng của pipeline hiện có",
+    "s027": "Độ phức tạp tuyến tính là đặc tính của khối state-space;<br/>toàn bộ hệ thống vẫn có attention và các chi phí khác.",
+    "s028": "Không gọi hệ thống hiện tại là CLIP pretrained: nhánh văn bản đang dùng Mamba-130M và soft prompt.",
+    "s029": "Ảnh RGB",
+    "s030": "448 × 448 sau preprocessing",
+    "s031": "VMamba-Small",
+    "s032": "Backbone → projection",
+    "s033": "Tên thuộc tính",
+    "s034": "Soft prompt + Mamba-130M",
+    "s035": "Biểu diễn văn bản",
+    "s036": "Theo thuộc tính / toàn cục",
+    "s037": "Spatial cross-attention",
+    "s038": "Ảnh được điều kiện hóa",
+    "s039": "Attribute Query Decoder",
+    "s040": "Token ảnh + khởi tạo từ văn bản",
+    "s041": "Classification",
+    "s042": "57 logits",
+    "s043": "Legacy visibility",
+    "s044": "Giám sát tổng hợp",
+    "s045": "MS: thêm token stage trung gian vào decoder.",
+    "s046": "Cross-Mamba vẫn được tính trong source AQ,<br/>nhưng đầu ra của nó không đi vào logits query.",
+    "s047": "Sơ đồ bám đường forward trong aq_visibility/model/climp_par.py; không coi nhánh rời logits là đóng góp hiệu quả.",
+    "s048": "Thêm token trung gian, giữ nguyên backbone nền",
+    "s049": "Đặc trưng cuối",
+    "s050": "Token ảnh đã điều kiện hóa",
+    "s051": "Stage trung gian",
+    "s052": "Pool + projection",
+    "s053": "Ghép token đa tỉ lệ",
+    "s054": "Đưa vào attribute query decoder",
+    "s055": [
+      "Biến thể",
+      "Khác biệt chính"
+    ],
+    "s056": [
+      [
+        "C0",
+        "Nhánh fusion baseline; không attribute-query decoder"
+      ],
+      [
+        "C3 / C3_MS",
+        "Attribute queries + visibility; MS bật token trung gian"
+      ],
+      [
+        "C4b / C4b_MS",
+        "Thêm consistency kiểu stop-gradient trên bằng chứng còn nguyên"
+      ]
+    ],
+    "s057": "Các checkpoint được chọn trong registry đều batch 16 × accumulation 4; MS không phải một backbone thứ hai.",
+    "s058": "Giữ dự đoán khi bằng chứng thuộc tính còn nguyên",
+    "s059": [
+      "Can thiệp",
+      "Mục tiêu học"
+    ],
+    "s060": [
+      [
+        "Che ngoài vùng bằng chứng",
+        "Consistency giữa dự đoán ảnh clean và ảnh bị che"
+      ],
+      [
+        "Che vùng bằng chứng",
+        "Không biến nhãn thuộc tính thành âm"
+      ],
+      [
+        "Vùng global / không chắc chắn",
+        "Không áp dụng supervision theo vùng khi chưa hợp lệ"
+      ]
+    ],
+    "s061": "Legacy visibility ≠ observability trên ảnh che tự nhiên",
+    "s062": [
+      "Mask tổng hợp chỉ đáng tin khi vùng can thiệp khớp giải phẫu.",
+      "Ảnh crop, người ngồi hoặc cúi làm giả định dải ngang sai."
+    ],
+    "s063": "Audit EOPAR đã phát hiện lỗi giả định vùng; pilot mới vẫn bị chặn. Consistency gap thấp chưa đủ chứng minh robustness.",
+    "s064": "Tách “thuộc tính tồn tại” khỏi “có thể quan sát”",
+    "s065": "ĐỀ XUẤT NGHIÊN CỨU",
+    "s066": "VMamba + multiscale",
+    "s067": "Giữ nền AQ hiện có",
+    "s068": "Attribute queries",
+    "s069": "Đặc trưng theo thuộc tính",
+    "s070": "p(attribute)",
+    "s071": "Nhánh phân loại",
+    "s072": "p(observable)",
+    "s073": "Nhánh quan sát",
+    "s074": [
+      "Che ngoài vùng: dự đoán thuộc tính cần ổn định.",
+      "Mất bằng chứng: observability cần giảm tương đối, có mask hợp lệ.",
+      "Không nhân hai xác suất để biến “không nhìn thấy” thành “không có”."
+    ],
+    "s075": "EOPAR là hướng phát triển; chưa có checkpoint đủ điều kiện để báo cải thiện thực nghiệm.",
+    "s076": "Mục tiêu triển khai và giả thuyết nghiên cứu",
+    "s077": "Baseline C4b",
+    "s078": "L<sub>base</sub> = L<sub>attr</sub> + λ<sub>v</sub>L<sub>vis</sub> + λ<sub>c</sub>L<sub>cons</sub>",
+    "s079": "L<sub>attr</sub>: weighted BCE + asymmetric loss. L<sub>cons</sub>: BCE với teacher stop-gradient,<br/>trừ entropy teacher; chỉ lấy trung bình trên mask bằng chứng còn nguyên.",
+    "s080": "Prototype EOPAR — chưa được mở pilot",
+    "s081": "L = L<sub>base</sub> + λ<sub>o</sub>L<sub>anchor</sub> + λ<sub>r</sub>L<sub>rank</sub>",
+    "s082": "L<sub>rank</sub> = mean<sub>w</sub> max(0, m − o<sub>clean</sub> + o<sub>occ</sub>)",
+    "s083": "Anchor dùng target visibility tổng hợp hợp lệ; không mặc định mọi ảnh gốc có observability = 1. Cần sửa supervision vùng trước train.",
+    "s084": [
+      "Hạng mục",
+      "Thiết lập / trạng thái"
+    ],
+    "s085": [
+      [
+        "Dữ liệu",
+        "MSP60K random split; 57 thuộc tính; input 448 × 448"
+      ],
+      [
+        "Checkpoint",
+        "9 checkpoint hoàn tất; seed 42/43 nếu có; batch 16 × 4"
+      ],
+      [
+        "Môi trường",
+        "2 RTX 4090; một job/GPU khi trống; không train lại trong benchmark"
+      ],
+      [
+        "Metric chuẩn",
+        "mA; instance IoU, precision, recall, mean-instance F1; threshold > 0,5"
+      ],
+      [
+        "Kiểm thử benchmark",
+        "14 CPU tests PASS; strict CPU load 5 kiến trúc PASS; smoke GPU PASS"
+      ],
+      [
+        "Kiểm thử EOPAR",
+        "48 CPU tests + 9 trường hợp metric; GPU/train gate riêng chưa đạt"
+      ]
+    ],
+    "s086": "Model nhỏ / CPU strict load / GPU smoke là ba mức kiểm chứng khác nhau; không thay thế thực nghiệm hiệu quả EOPAR.",
+    "s087": "MSP60K test chính thức • 23.822 ảnh • seed 42",
+    "s088": [
+      "Baseline",
+      "mA clean (%)",
+      "mA che tổng hợp (%)",
+      "Consistency gap"
+    ],
+    "s089": "Chỉ dùng mA từ JSON lịch sử, đã đối chiếu trung bình 57 thuộc tính. Metric accuracy/F1 cũ không đưa vào bảng chuẩn mới.",
+    "s090": "C3 • validation (6.002 ảnh)",
+    "s091": "mA (%)",
+    "s092": "Hệ số giảm mỗi chiều",
+    "s093": "RGB → bicubic ↓ W/s, H/s → bicubic ↑ W, H → PNG; không SR.",
+    "s094": [
+      "C3 • validation",
+      "Clean",
+      "×2",
+      "×4",
+      "×8"
+    ],
+    "s095": "Validation C3 đã hoàn tất và kiểm lại từ NPZ. Test / so sánh 9 checkpoint còn đang chạy tại mốc chốt; không gọi đây là SOTA hay ZSSR.",
+    "s096": [
+      "Khía cạnh",
+      "Bằng chứng hiện có / giới hạn"
+    ],
+    "s097": [
+      [
+        "Baseline",
+        "Có kết quả test lịch sử; consistency giảm gap, không đảm bảo mọi biến thể tăng clean mA."
+      ],
+      [
+        "Giảm độ phân giải",
+        "C3 validation giảm rõ tại ×8; cần test đầy đủ và nhiều checkpoint trước kết luận so sánh."
+      ],
+      [
+        "Pipeline benchmark",
+        "119.296 ảnh sinh xong; operator, artifact, metric, gate và smoke đã qua kiểm thử."
+      ],
+      [
+        "EOPAR",
+        "Có prototype và kiểm thử CPU; supervision vùng giải phẫu chưa hợp lệ, chưa mở pilot."
+      ],
+      [
+        "Giới hạn nghiên cứu",
+        "Chưa có kết quả che tự nhiên/cross-domain đủ mạnh; chưa chứng minh novelty hay đủ bằng chứng nộp Q1."
+      ]
+    ],
+    "s098": "Ưu tiên bằng chứng thực nghiệm trước khi tăng kiến trúc",
+    "s099": "Mục tiêu 8–12 tuần là bản thảo có bằng chứng; tiến độ phụ thuộc gate dữ liệu, GPU và thực nghiệm. Không bảo đảm chấp nhận Q1.",
+    "s100": "Nguồn nội bộ và checksum: source/PROVENANCE.csv. Tài liệu tham khảo dùng cho nền tảng, không phải số so sánh chép từ paper."
+  }
+}

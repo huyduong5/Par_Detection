@@ -1,0 +1,33 @@
+/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/aq_visibility/model/../../VMamba/vmamba.py:840: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  def forward(ctx, u, delta, A, B, C, D=None, delta_bias=None, delta_softplus=False, oflex=True, backend=None):
+/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/aq_visibility/model/../../VMamba/vmamba.py:855: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  def backward(ctx, dout, *args):
+/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/eopar/train/run.py", line 42, in build
+    from aq_visibility.model.climp_par import CLIMPPAR
+  File "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/aq_visibility/model/__init__.py", line 1, in <module>
+    from .climp_par import CLIMPPAR, SpatialCrossAttention
+  File "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/aq_visibility/model/climp_par.py", line 7, in <module>
+    from .text_encoder import MambaTextEncoder
+  File "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/aq_visibility/model/text_encoder.py", line 19, in <module>
+    from mamba_ssm.models.mixer_seq_simple import MambaLMHeadModel
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/mamba_ssm/__init__.py", line 3, in <module>
+    from mamba_ssm.ops.selective_scan_interface import selective_scan_fn, mamba_inner_fn
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/mamba_ssm/ops/selective_scan_interface.py", line 16, in <module>
+    from mamba_ssm.ops.triton.layer_norm import _layer_norm_fwd
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/mamba_ssm/ops/triton/layer_norm.py", line 179, in <module>
+    def _layer_norm_fwd_1pass_kernel(
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/triton/runtime/autotuner.py", line 368, in decorator
+    return Autotuner(fn, fn.arg_names, configs, key, reset_to_zero, restore_value, pre_hook=pre_hook,
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/triton/runtime/autotuner.py", line 130, in __init__
+    self.do_bench = driver.active.get_benchmarker()
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/triton/runtime/driver.py", line 23, in __getattr__
+    self._initialize_obj()
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/triton/runtime/driver.py", line 20, in _initialize_obj
+    self._obj = self._init_fn()
+  File "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/lib/python3.10/site-packages/triton/runtime/driver.py", line 8, in _create_driver
+    raise RuntimeError(f"{len(actives)} active drivers ({actives}). There should only be one.")
+RuntimeError: 0 active drivers ([]). There should only be one.

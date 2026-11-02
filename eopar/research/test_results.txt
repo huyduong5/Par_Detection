@@ -1,0 +1,32 @@
+test_metric_instance_not_element (test_core.TestDataMetrics) ... ok
+test_metrics_reject_missing_labels (test_core.TestDataMetrics) ... ok
+test_natural_auc_ties (test_core.TestDataMetrics) ... ok
+test_pairs_labels_and_determinism (test_core.TestDataMetrics) ... ok
+test_resume_rng_optimizer_scheduler_scaler (test_core.TestDataMetrics) ... ok
+test_selective_ties_order_independent (test_core.TestDataMetrics) ... ok
+test_checkpoint_strict (test_core.TestModelLoss) ... ok
+test_disabled_matches_baseline (test_core.TestModelLoss) ... ok
+test_empty_masks_finite (test_core.TestModelLoss) ... ok
+test_heads_have_gradients (test_core.TestModelLoss) ... ok
+test_masks_global_uncertain (test_core.TestModelLoss) ... ok
+test_ranking_direction (test_core.TestModelLoss) ... ok
+test_teacher_stop_gradient (test_core.TestModelLoss) ... ok
+test_tiny_data_overfit_and_head_noncollapse (test_core.TestModelLoss) ... ok
+test_annotation_agreement_and_empty (test_tools.TestResearchTools) ... /mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/eopar/scripts/annotations.py:13: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpa_sq32d5/0.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(open(path, encoding='utf-8')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/eopar/scripts/annotations.py:13: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpa_sq32d5/1.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(open(path, encoding='utf-8')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_annotation_duplicate_rejected (test_tools.TestResearchTools) ... /mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/eopar/scripts/annotations.py:13: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpdqc0hu3m/duplicate.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(open(path, encoding='utf-8')))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_calibration_refuses_test (test_tools.TestResearchTools) ... ok
+test_validation_calibration_provenance (test_tools.TestResearchTools) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 5.405s
+
+OK

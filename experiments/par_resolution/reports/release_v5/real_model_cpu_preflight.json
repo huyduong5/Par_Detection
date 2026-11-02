@@ -1,0 +1,43 @@
+{
+  "state": "PASS",
+  "models": [
+    {
+      "model": "C0",
+      "state": "PASS",
+      "parameters": 187284737,
+      "all_frozen": true,
+      "eval": true
+    },
+    {
+      "model": "C3",
+      "state": "PASS",
+      "parameters": 201171658,
+      "all_frozen": true,
+      "eval": true
+    },
+    {
+      "model": "C3_MS",
+      "state": "PASS",
+      "parameters": 201469642,
+      "all_frozen": true,
+      "eval": true
+    },
+    {
+      "model": "C4b_bs16",
+      "state": "PASS",
+      "parameters": 201171658,
+      "all_frozen": true,
+      "eval": true
+    },
+    {
+      "model": "C4b_MS_bs16",
+      "state": "PASS",
+      "parameters": 201469642,
+      "all_frozen": true,
+      "eval": true
+    }
+  ],
+  "source_fingerprint": "e158b18eb628d67e2280cb4f7a7101a9466b3a3103c44e24eb4ac7a071029e59",
+  "registry_sha256": "4ce2ddfe46a5b45f74b22a790f7469a1b89485764778f3f8cbe8bfb3851d5ed2",
+  "note": "CPU strict weight loading only; no GPU forward claimed"
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "pid": 609311,
+    "variant": "B1",
+    "command": "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/bin/python -u -m eopar.scripts.queue --gpu 0 --variant B1 --run-pilot --output eopar/outputs/initial_B1 ",
+    "action": "SIGTERM waiting worker only",
+    "verified_state_before_signal": "waiting_for_idle_gpu",
+    "stopped_at_epoch": 1793521364.61131
+  },
+  {
+    "pid": 609357,
+    "variant": "P3",
+    "command": "/mnt/data8tb/huydq/miniconda3/envs/pedestrian-par/bin/python -u -m eopar.scripts.queue --gpu 1 --variant P3 --run-pilot --output eopar/outputs/initial_P3 ",
+    "action": "SIGTERM waiting worker only",
+    "verified_state_before_signal": "waiting_for_idle_gpu",
+    "stopped_at_epoch": 1793521364.6151872
+  }
+]

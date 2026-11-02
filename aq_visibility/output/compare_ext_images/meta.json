@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "threshold": 0.5,
+  "variants": [
+    "C0",
+    "C1",
+    "C2",
+    "C3",
+    "C4_reaudit",
+    "C4b",
+    "C3_MS",
+    "C4b_MS"
+  ],
+  "images": [
+    {
+      "id": "img01",
+      "imgname": "part17_20231212152250_01165_003.jpg",
+      "global_idx": 56705,
+      "path": "aq_visibility/output/compare_ext_images/images/img01_part17_20231212152250_01165_003.jpg",
+      "gt_positive": [
+        "Adult",
+        "Normal",
+        "Front",
+        "Short sleeves",
+        "Trousers",
+        "Shoulder bag",
+        "Walking"
+      ]
+    },
+    {
+      "id": "img02",
+      "imgname": "part16_20231212032414_03699_005.jpg",
+      "global_idx": 53823,
+      "path": "aq_visibility/output/compare_ext_images/images/img02_part16_20231212032414_03699_005.jpg",
+      "gt_positive": [
+        "Adult",
+        "Normal",
+        "Hat",
+        "Gloves",
+        "Front",
+        "Long sleeves",
+        "Cotton-padded coat",
+        "Trousers",
+        "Casual shoes",
+        "Standing"
+      ]
+    }
+  ]
+}

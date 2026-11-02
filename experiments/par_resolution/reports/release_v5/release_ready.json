@@ -1,0 +1,9 @@
+{
+  "state": "PASS",
+  "release": "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/experiments/releases/par_resolution_v5/repo",
+  "source_fingerprint": "e158b18eb628d67e2280cb4f7a7101a9466b3a3103c44e24eb4ac7a071029e59",
+  "registry_sha256": "4ce2ddfe46a5b45f74b22a790f7469a1b89485764778f3f8cbe8bfb3851d5ed2",
+  "cpu_report_sha256": "e0a4b571fc0bcdf2b5c900e19431075e483cc7d9effba14f90c5419367c9f2d3",
+  "real_model_cpu_preflight_sha256": "41bfd59abde22f57e4a859f9436744f78e20cdea0bbd5d4799e0b23a0c407e88",
+  "decision": "Eligible to wait for validation smoke only; test requires the separate validation gate. No training authorized by this release."
+}

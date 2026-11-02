@@ -1,0 +1,108 @@
+{
+  "url": "https://raw.githubusercontent.com/Event-AHU/OpenPAR/main/MambaPAR_Empirical_Study/tools/function.py",
+  "sha256": "ffd76f07ea6fcd61371a78af876a191d883d8fad01dfad1f83e5e9d4e5ef70e8",
+  "threshold": 0.5,
+  "decision": "strict >",
+  "cases": [
+    {
+      "n": 1,
+      "kind": "random",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 1,
+      "kind": "zero_predictions",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 1,
+      "kind": "threshold_boundary",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 7,
+      "kind": "random",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 7,
+      "kind": "zero_predictions",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 7,
+      "kind": "threshold_boundary",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 101,
+      "kind": "random",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 101,
+      "kind": "zero_predictions",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    },
+    {
+      "n": 101,
+      "kind": "threshold_boundary",
+      "absolute_differences": {
+        "mA": 0.0,
+        "instance_accuracy": 0.0,
+        "instance_precision": 0.0,
+        "instance_recall": 0.0,
+        "instance_f1_mean": 0.0
+      }
+    }
+  ],
+  "status": "PASS"
+}

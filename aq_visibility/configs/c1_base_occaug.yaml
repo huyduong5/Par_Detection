@@ -1,0 +1,12 @@
+variant: C1
+package: _my_model_8
+description: Base + controlled occlusion augmentation (RandomErasing region bands)
+use_attr_queries: false
+use_visibility: false
+use_occlusion_pairs: false
+use_occ_aug: true
+occ_aug_prob: 0.5
+lambda_v: 0.0
+lambda_c: 0.0
+epochs: 30
+seed: 42

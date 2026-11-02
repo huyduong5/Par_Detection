@@ -1,0 +1,20 @@
+{
+  "split_counts": {
+    "train": 30298,
+    "val": 6002,
+    "test": 23822
+  },
+  "name_overlap": {
+    "train:val": [],
+    "train:test": [],
+    "val:test": []
+  },
+  "missing_images": [],
+  "label_values": [
+    0,
+    1
+  ],
+  "byte_hash_audit_performed": false,
+  "cross_split_identical_bytes": [],
+  "limitation": "Identity/camera leakage and near-duplicates require metadata/perceptual audit"
+}

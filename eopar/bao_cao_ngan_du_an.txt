@@ -1,0 +1,15 @@
+BÁO CÁO NGẮN — NHẬN DIỆN THUỘC TÍNH NGƯỜI ĐI BỘ (PAR)
+
+Bài toán: Từ ảnh người đi bộ, dự đoán các nhãn như giới tính, kiểu tóc, trang phục và phụ kiện; hỗ trợ theo dõi, tái định danh và truy xuất người.
+
+Nghiên cứu liên quan: MSP60K/LLM-PAR; FOCUS; Hierarchical Cross-Modality HyperGraph Learning; Mamba-based PAR; UniPAR; UAPAR. Các hướng chính gồm kết hợp ảnh–văn bản, truy vấn theo thuộc tính, khai thác quan hệ thuộc tính và đánh giá độ tin cậy.
+
+Nền tảng dự án: VMamba xử lý ảnh, Mamba xử lý văn bản, Attribute Query Decoder và đặc trưng đa tỉ lệ; kế thừa cảm hứng kiến trúc từ CLIMP. Mamba hướng tới giảm chi phí xử lý chuỗi so với attention toàn cục; không coi toàn bộ mô hình hybrid có độ phức tạp tuyến tính.
+
+Hướng đề xuất — EOPAR: Tách dự đoán “thuộc tính có tồn tại” khỏi “ảnh có đủ bằng chứng để quan sát thuộc tính”. Khi che vùng không liên quan, giữ dự đoán ổn định; khi che vùng bằng chứng, học giảm khả năng quan sát thay vì đổi nhãn thành âm.
+
+Đóng góp cần kiểm chứng: Học observability qua can thiệp theo vùng, giảm dự đoán tự tin khi thiếu bằng chứng và cải thiện độ bền trên ảnh che khuất/miền chưa gặp. Phải đối chiếu với UAPAR và các phương pháp attention; chưa khẳng định tính mới hoặc hiệu quả vượt trội.
+
+Tiến độ: Đã triển khai EOPAR, đạt 48 kiểm thử CPU và đối chiếu metric OpenPAR. Chưa cho train dài: dải chia cơ thể cố định có thể sai với ảnh bị cắt hoặc tư thế bất thường; kiểm thử GPU đang chờ tài nguyên.
+
+Bước tiếp theo: Xác minh vùng bằng chứng, bổ sung nhãn che tự nhiên, hoàn tất kiểm thử GPU và so sánh baseline/ablation trên nhiều seed, dataset và cross-domain. Mục tiêu là xây dựng bằng chứng nghiên cứu đủ mạnh để hướng tới journal Q1 theo JCR.

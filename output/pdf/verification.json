@@ -1,0 +1,18 @@
+{
+  "state": "PASS",
+  "pages": 24,
+  "size_pt": [
+    960,
+    540
+  ],
+  "font": "Embedded DejaVu Sans / Bold; substitutes missing Tahoma/Arial",
+  "metric_roundtrip": "All four C3 full-validation and four smoke NPZ files verified; no smoke performance used as test",
+  "historical_validation": "mA equals mean of 57 per-attribute values; n_test=23822",
+  "cutoff": "02/11/2026",
+  "pdf_sha256": "198b491ef6f3b7d052ccb02a6fb63599457addd585e25b46374ea5984d74c4be",
+  "visual_review": "PASS: all 24 pages inspected as rendered contact sheets; cover, architecture, tables, resolution chart and closing page inspected at full size. No clipping, overlap, missing glyphs or logo background artifacts found.",
+  "numbering": "PASS: cover and thanks unnumbered; middle pages 1/22 through 22/22",
+  "source_integrity": "PASS: checkpoint and attribute-order binding checked for modern artifacts; SHA-256 and metric round-trip passed",
+  "template": "User-provided Slide (6).pdf; same 16:9 dimensions, 5 sections, blue cover/header, logos and page counter; DejaVu Sans substituted for unavailable original fonts",
+  "text_bounds": "PASS: every extracted text span stays inside page bounds"
+}

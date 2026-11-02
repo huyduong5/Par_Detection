@@ -1,0 +1,14 @@
+[
+  {
+    "gpu": 0,
+    "pid": 633024,
+    "role": "bounded_gpu_diagnostics_when_idle",
+    "pilot_launch_enabled": false
+  },
+  {
+    "gpu": 1,
+    "pid": 633025,
+    "role": "bounded_gpu_diagnostics_when_idle",
+    "pilot_launch_enabled": false
+  }
+]

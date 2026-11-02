@@ -1,0 +1,7 @@
+{
+  "state": "PASS",
+  "source_fingerprint": "e158b18eb628d67e2280cb4f7a7101a9466b3a3103c44e24eb4ac7a071029e59",
+  "log": "/mnt/data8tb/huydq/projects/Pedestrain-Attribute-Recognition/experiments/par_resolution/reports/release_v5/cpu_tests.log",
+  "log_sha256": "ad89cf5acdcd65b6cc708370f275638e3e103d40ff514ecc64d2c3786bb16a87",
+  "scope": "Operator, generator, dataset, mock-model production evaluator, resume/artifact/gate, bootstrap and GPU-busy handling. Real GPU inference pending."
+}

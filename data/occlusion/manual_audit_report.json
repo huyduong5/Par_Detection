@@ -1,0 +1,7 @@
+{
+  "compared": 0,
+  "missing": 0,
+  "agreement_at_0.35": null,
+  "note": "Template CSV only. Label 50-100 natural occlusion images, then run tools/occlusion/audit_manual_visibility.py",
+  "manual_csv": "data/occlusion/manual_visibility.csv"
+}

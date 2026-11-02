@@ -1,0 +1,11 @@
+variant: C5
+package: aq_visibility
+description: Optional background-branch ablation (not in main C0–C4 table)
+use_attr_queries: true
+use_visibility: true
+use_occlusion_pairs: true
+lambda_v: 0.5
+lambda_c: 0.2
+use_background: true
+epochs: 30
+seed: 42

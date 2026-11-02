@@ -1,8 +1,25 @@
-**.zip
-**.jpg
-**.pt
-**.png
-**.pth
-**.mp4
-**.ckpt
-**.json
+# Large weights / media
+*.zip
+*.pt
+*.pth
+*.mp4
+*.ckpt
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+
+# But keep small thesis figures and eval artifacts if force-added:
+!cross_mambapar_architecture.jpg
+!docs/**/*.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Local/runtime noise
+*.log
+.DS_Store

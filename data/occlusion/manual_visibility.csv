@@ -1,0 +1,3 @@
+imgname,region,attr,visibility,notes
+example/part0_000001.jpg,head,Glasses,0.2,natural occlusion audit template
+example/part0_000002.jpg,upper,Backpack,0.3,replace with real labeled samples

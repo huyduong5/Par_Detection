@@ -1,0 +1,123 @@
+{
+  "protocol": "historical legacy metrics; not a new standardized evaluation",
+  "groups": {
+    "C3_MS": {
+      "rows": [
+        {
+          "seed": 42,
+          "state": "available",
+          "path": "aq_visibility/output/eval_json/C3_MS_test.json",
+          "clean": {
+            "mA": 0.8105395244877841,
+            "accuracy": 0.9265546958656822,
+            "precision": 0.7246801853179932,
+            "recall": 0.9042996764183044,
+            "f1": 0.8045870065689087
+          },
+          "occluded": {
+            "mA": 0.6998463501674015,
+            "accuracy": 0.8813642703854759,
+            "precision": 0.6183503270149231,
+            "recall": 0.8161086440086365,
+            "f1": 0.7035977840423584
+          }
+        },
+        {
+          "seed": 43,
+          "state": "available",
+          "path": "aq_visibility/output/eval_json/C3_MS_s43_test.json",
+          "clean": {
+            "mA": 0.8071514108580792,
+            "accuracy": 0.9253240775517839,
+            "precision": 0.7204747200012207,
+            "recall": 0.9038660526275635,
+            "f1": 0.801817774772644
+          },
+          "occluded": {
+            "mA": 0.7076842972425114,
+            "accuracy": 0.8307601553628005,
+            "precision": 0.5848587155342102,
+            "recall": 0.8791833519935608,
+            "f1": 0.7024362087249756
+          }
+        },
+        {
+          "seed": 44,
+          "state": "not_available",
+          "expected_path": "aq_visibility/output/seed44_20261031/C3_MS_s44_test.json"
+        }
+      ],
+      "summary": {
+        "mA": {
+          "n": 2,
+          "mean": 0.8088454676729316,
+          "sample_std": 0.00239575812299492
+        },
+        "f1": {
+          "n": 2,
+          "mean": 0.8032023906707764,
+          "sample_std": 0.001958142581816137
+        }
+      }
+    },
+    "C4b_MS": {
+      "rows": [
+        {
+          "seed": 42,
+          "state": "available",
+          "path": "aq_visibility/output/eval_json/C4b_MS_bs16_test.json",
+          "clean": {
+            "mA": 0.8102271431789101,
+            "accuracy": 0.9259463830426541,
+            "precision": 0.7218834161758423,
+            "recall": 0.9043639302253723,
+            "f1": 0.8028855919837952
+          },
+          "occluded": {
+            "mA": 0.7363220192314689,
+            "accuracy": 0.9240021386688112,
+            "precision": 0.7279425263404846,
+            "recall": 0.8501064777374268,
+            "f1": 0.784295916557312
+          }
+        },
+        {
+          "seed": 43,
+          "state": "available",
+          "path": "aq_visibility/output/eval_json/C4b_MS_s43_test.json",
+          "clean": {
+            "mA": 0.8066124922736982,
+            "accuracy": 0.9257298649192034,
+            "precision": 0.7209382057189941,
+            "recall": 0.9041922688484192,
+            "f1": 0.8022331595420837
+          },
+          "occluded": {
+            "mA": 0.7442917996232233,
+            "accuracy": 0.9257578502548874,
+            "precision": 0.7324072122573853,
+            "recall": 0.8550266027450562,
+            "f1": 0.7889811396598816
+          }
+        },
+        {
+          "seed": 44,
+          "state": "not_available",
+          "expected_path": "aq_visibility/output/seed44_20261031/C4b_MS_s44_test.json"
+        }
+      ],
+      "summary": {
+        "mA": {
+          "n": 2,
+          "mean": 0.8084198177263042,
+          "sample_std": 0.0025559441666973895
+        },
+        "f1": {
+          "n": 2,
+          "mean": 0.8025593757629395,
+          "sample_std": 0.00046133940380024607
+        }
+      }
+    }
+  }
+}
