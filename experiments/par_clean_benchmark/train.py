@@ -18,7 +18,6 @@ from torch.utils.data import DataLoader, Dataset
 from eopar.datasets.interventions import encode, seed_for
 from eopar.train.runtime import (ROOT, atomic_save, capture_rng, digest, environment_identity,
                                  restore_rng, verify_pretrained, write_json)
-from eopar.train.run import load_config
 from experiments.par_quality_recovery.amp import audit_steps, train_epoch
 from .metrics import scores
 
@@ -123,11 +122,10 @@ def run(a):
     out.mkdir(parents=True,exist_ok=True)
     source = json.loads(a.manifest.read_text())
     attrs = source['attributes']
-    cfg = load_config(ROOT/'eopar/configs/B0.json')
     from experiments.par_quality_train.run import identity
     evidence = dict(dataset=source['dataset'],variant=a.variant,seed=a.seed,batch=a.batch,accumulation=64//a.batch,
         image_size=448,epochs=30,lr=5e-5,manifest_sha256=digest(a.manifest),source_hashes=identity(),
-        pretrained=verify_pretrained(cfg['pretrained_lock']),environment=environment_identity(),
+        pretrained=verify_pretrained(ROOT/'eopar/configs/pretrained_lock.json'),environment=environment_identity(),
         clean=True,threshold=.5)
     evidence['benchmark_source'] = {p.name:digest(p) for p in Path(__file__).parent.glob('*.py')}
     evidence['amp_recovery_sha256'] = digest(ROOT/'experiments/par_quality_recovery/amp.py')
