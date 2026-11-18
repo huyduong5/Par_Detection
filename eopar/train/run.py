@@ -83,11 +83,31 @@ def build(config, output, initialize=True):
 def make_dataset(config, split, family='solid', severity=1.):
     from aq_visibility.dataset.clip_dataset import PARDataset
     base = PARDataset(config['pkl_path'], config['img_dir'], split, transform=None)
+    if config.get('geometry_manifest'):
+        import pickle
+        from eopar.datasets.geometry import verify_sources, read_geometry
+        with open(config['pkl_path'], 'rb') as handle:
+            source = pickle.load(handle)
+        names = {}
+        for partition in ('train', 'val'):
+            indices = source.partition[partition]
+            if isinstance(indices, list): indices = indices[0]
+            names[partition] = {str(source.image_name[i]) for i in np.asarray(indices).ravel()}
+        verify_sources(config['geometry_manifest'], config['img_dir'], digest(config['pkl_path']), names)
+        # Both B1 and P* use exactly the same reviewed pilot subset.
+        if split in ('train', 'val'):
+            _, rows = read_geometry(config['geometry_manifest'])
+            selected = {name for name, row in rows.items() if row['split'] == split}
+            from torch.utils.data import Subset
+            original = base
+            base = Subset(original, [i for i, name in enumerate(original.img_ids) if str(name) in selected])
+            base.attributes = original.attributes
     if config.get('eval_exclusions') and split != 'train':
         excluded = set(json.loads(Path(config['eval_exclusions']).read_text())[split])
         from torch.utils.data import Subset
         original = base
-        base = Subset(original, [i for i, name in enumerate(original.img_ids) if name not in excluded])
+        base_names = original.img_ids if hasattr(original, 'img_ids') else [original.dataset.img_ids[i] for i in original.indices]
+        base = Subset(original, [i for i, name in enumerate(base_names) if name not in excluded])
         base.attributes = original.attributes
     return InterventionDataset(base, config['region_map'], split, config['seed'],
                                config['size'], config['variant'] == 'P3' and split == 'train',
@@ -97,6 +117,23 @@ def make_dataset(config, split, family='solid', severity=1.):
 
 def to_device(batch, device):
     return {k: v.to(device, non_blocking=True) if torch.is_tensor(v) else v for k, v in batch.items()}
+
+
+@torch.no_grad()
+def evaluate_clean(model, loader, device, attributes, amp=True):
+    """Classification only on the official validation split; no anatomy claim."""
+    model.eval()
+    predictions, labels = [], []
+    for batch in loader:
+        b = to_device(batch, device)
+        with autocast(device.type, enabled=device.type == 'cuda' and amp):
+            result = model(b['img_clean'], b['domain_token'], attributes)
+        predictions.append(result['attr_logits'].float().sigmoid().cpu().numpy())
+        labels.append(b['labels'].cpu().numpy())
+    if not predictions: raise ValueError('Empty official validation split')
+    return dict(samples=sum(len(y) for y in labels), threshold=.5,
+                classification=evaluate_arrays(np.concatenate(predictions), np.concatenate(labels)),
+                split='official_clean_validation', note='Classification only; no region/observability labels')
 
 
 @torch.no_grad()
@@ -156,9 +193,13 @@ def train_epoch(model, loader, criterion, optimizer, scheduler, scaler, config, 
     total = min(len(loader), config.get('max_train_batches', 0) or len(loader))
     optimizer.zero_grad(set_to_none=True)
     started = time.monotonic()
+    supervision_counts = {}
     for i, batch in enumerate(loader):
         if i >= total:
             break
+        for region, kind, severity, active in zip(batch.get('region', []), batch.get('intervention_type', []), batch.get('severity', []), batch.get('supervision_active', [False] * len(batch['labels']))):
+            key = f'{region}/{kind}/severity={float(severity):g}/active={bool(active)}'
+            supervision_counts[key] = supervision_counts.get(key, 0) + 1
         b = to_device(batch, device)
         # Each loss is a microbatch mean. Weight a short final batch by examples.
         group_start = (i // config['grad_accum']) * config['grad_accum']
@@ -188,6 +229,7 @@ def train_epoch(model, loader, criterion, optimizer, scheduler, scaler, config, 
             print(json.dumps(dict(epoch=epoch + 1, batch=i + 1, batches=total,
                                   loss=float(loss.detach()), parts=parts,
                                   elapsed=time.monotonic() - started)), flush=True)
+    print(json.dumps(dict(epoch=epoch + 1, supervision_counts=supervision_counts)), flush=True)
 
 
 def main():
@@ -231,19 +273,25 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     generator = torch.Generator().manual_seed(c['seed'])
     train, val = make_dataset(c, 'train'), make_dataset(c, 'val')
-    if c['variant'].startswith('P') and not args.diagnostic_proxy:
-        for dataset in (train,val):
-            base=dataset.base
-            names=base.img_ids if hasattr(base,'img_ids') else [base.dataset.img_ids[i] for i in base.indices]
-            regions=set(r for name in names for r in (dataset.geometry or {}).get(str(name),[]))
-            if regions!={'head','upper','lower','shoes'}:
-                raise ValueError('Verified geometry must cover all four evidence regions')
+    if c.get('geometry_manifest') and not args.diagnostic_proxy:
+        from eopar.datasets.geometry import read_geometry, require_coverage
+        _, geometry_records = read_geometry(c['geometry_manifest'])
+        density = require_coverage(geometry_records)
+        write_json(out / 'geometry_coverage.json', density)
     if len(train.attributes) != c['num_attrs']:
         raise ValueError('Attribute count mismatch')
     train_loader = DataLoader(train, batch_size=c['batch_size'], shuffle=True,
                               num_workers=c['workers'], pin_memory=device.type == 'cuda',
                               generator=generator)
     val_loader = DataLoader(val, batch_size=c['eval_batch_size'], num_workers=c['workers'])
+    official_loader = None
+    if c.get('geometry_manifest') and not args.verification_run and not args.diagnostic_proxy:
+        official_config = dict(c)
+        official_config.pop('geometry_manifest', None)
+        official_config.pop('eval_exclusions', None)
+        official_config['augment'] = False
+        official_val = make_dataset(official_config, 'val')
+        official_loader = DataLoader(official_val, batch_size=c['eval_batch_size'], num_workers=c['workers'])
     model, criterion = build(c, out, initialize=not args.resume)
     model, criterion = model.to(device), criterion.to(device)
     optimizer = torch.optim.AdamW((p for p in model.parameters() if p.requires_grad),
@@ -284,6 +332,10 @@ def main():
         train_epoch(model, train_loader, criterion, optimizer, scheduler, scaler, c, device, epoch)
         metrics = evaluate(model, val_loader, device, val.attributes, c.get('max_val_batches', 0), amp=c['eval_amp'])
         score = metrics['clean']['par']['mA']
+        if official_loader is not None:
+            metrics['official_clean_validation'] = evaluate_clean(model, official_loader, device, val.attributes, amp=c['eval_amp'])
+            metrics['selection_metric'] = 'official_clean_validation.classification.par.mA'
+            score = metrics['official_clean_validation']['classification']['par']['mA']
         improved = score > best
         best = max(best, score)
         payload = dict(model=model.state_dict(), optimizer=optimizer.state_dict(),
