@@ -1,0 +1,11 @@
+numpy>=1.24
+Pillow>=9.1
+scipy>=1.9
+iterative-stratification>=0.1.9
+easydict
+matplotlib
+einops
+timm
+transformers
+safetensors
+huggingface-hub

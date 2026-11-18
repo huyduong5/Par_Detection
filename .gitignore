@@ -1,25 +1,33 @@
-# Large weights / media
+# Data, model weights and generated reports
+*.pdf
 *.zip
 *.pt
 *.pth
-*.mp4
 *.ckpt
+*.pkl
+*.npz
+*.mp4
 *.jpg
 *.jpeg
 *.png
 *.gif
 *.webp
+output/
+outputs/
+MSP60k/SUBMIT/images/
+MSP60k/SUBMIT/degrade_image/
+eopar/research/annotation/
+eopar/research/verification/
+experiments/par_resolution/reports/
+/server_snapshots/
+/tmp/
 
-# But keep small thesis figures and eval artifacts if force-added:
-!cross_mambapar_architecture.jpg
-!docs/**/*.md
-
-# Python
+# Python and local environment
 __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
-
-# Local/runtime noise
+.venv/
+.env
 *.log
 .DS_Store

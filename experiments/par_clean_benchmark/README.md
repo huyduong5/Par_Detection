@@ -7,8 +7,9 @@ Initialize the pinned backbone sources with `git submodule update --init`.
 Use the CUDA environment with VMamba selective-scan and Mamba extensions,
 plus Pillow, NumPy, SciPy and iterative-stratification for dataset preparation.
 Set the local pretrained paths and hashes in `eopar/configs/pretrained_lock.json`
-and the existing project paths in `eopar/configs/B0.json`. The trainer uses
-that config's validated project paths and verifies the files actually loaded.
+before launching training. The trainer checks the hashes of the files actually
+loaded by the encoders. The clean benchmark takes dataset paths from its own
+manifests.
 
 Prepare each dataset from its extracted image directory and original annotation:
 

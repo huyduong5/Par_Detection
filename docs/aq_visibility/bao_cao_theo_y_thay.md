@@ -130,7 +130,7 @@ Mỗi run C2–C4 (và C3/C4 đầy đủ) xuất:
 
 C0/C1 dùng eval Base → clean 5 metrics (+ `val_best_mA`); chưa có occ/vis/region trong JSON hiện tại.
 
-File tổng hợp: `docs/aq_visibility/results.md`, `docs/aq_visibility_results.md`, `docs/aq_visibility/gap_analysis.md`.
+[Phân tích theo nhóm thuộc tính](gap_analysis.md). Các bảng kết quả được tạo trong thư mục đầu ra của từng lượt.
 
 ---
 
