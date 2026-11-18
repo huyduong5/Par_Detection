@@ -17,6 +17,19 @@ class EOPAR(nn.Module):
         if getattr(baseline, 'use_attr_queries', False):
             for p in baseline.cross_mamba.parameters():
                 p.requires_grad_(False)
+            # The text difference is W(LN(attr) - LN(style)). Both the
+            # LayerNorm shift and projection bias cancel algebraically. Keep
+            # their checkpoint values/forward unchanged, but do not let AdamW
+            # integrate FP16 cancellation noise into these unidentifiable terms.
+            config = getattr(baseline, 'config', None)
+            contrastive = any(getattr(config, name, 0.) > 0 for name in
+                              ('global_contrastive_weight', 'finegrained_contrastive_weight'))
+            if not contrastive:
+                encoder = getattr(baseline, 'text_encoder', None)
+                for name in ('norm', 'projection'):
+                    bias = getattr(getattr(encoder, name, None), 'bias', None)
+                    if bias is not None:
+                        bias.requires_grad_(False)
 
     def train(self, mode=True):
         super().train(mode)

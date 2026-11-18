@@ -1,0 +1,6 @@
+[submodule "VMamba"]
+	path = VMamba
+	url = https://github.com/MzeroMiko/VMamba.git
+[submodule "mamba"]
+	path = mamba
+	url = https://github.com/state-spaces/mamba.git

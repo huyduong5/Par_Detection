@@ -7,7 +7,7 @@ import torch
 from aq_visibility.model.vision_encoder import VMambaVisionEncoder as BaseVision
 from aq_visibility.model.text_encoder import MambaTextEncoder as BaseText
 from eopar.train.runtime import ROOT, digest
-from eopar.models.weights import checked_state
+from eopar.models.weights import checked_state, canonical_vmamba_state
 
 
 class VMambaVisionEncoder(BaseVision):
@@ -16,7 +16,7 @@ class VMambaVisionEncoder(BaseVision):
         if not path.is_file():
             raise FileNotFoundError(f'Required offline vision checkpoint: {path}')
         payload = torch.load(path, map_location='cpu', weights_only=False)
-        checked_state(self.backbone, payload.get('model', payload))
+        checked_state(self.backbone, canonical_vmamba_state(payload.get('model', payload)))
         self.pretrained_files = {str(path.resolve()): digest(path)}
 
 

@@ -25,7 +25,7 @@ def digest(path):
 
 def source_hashes():
     paths = [ROOT / 'eopar/__init__.py']
-    for folder in ('models', 'datasets', 'losses', 'train', 'eval', 'scripts', 'verification'):
+    for folder in ('models', 'datasets', 'losses', 'train', 'eval', 'scripts', 'verification', 'operations'):
         paths += list((ROOT / 'eopar' / folder).rglob('*.py'))
     paths += [p for p in (ROOT / 'aq_visibility').rglob('*.py')
               if not {'output', 'tests', '__pycache__'} & set(p.parts)]

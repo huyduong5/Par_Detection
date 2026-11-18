@@ -11,9 +11,8 @@ import numpy as np
 import torch
 from PIL import Image, ImageEnhance
 from torch.utils.data import Dataset
+from .geometry import REGIONS, BANDS, read_geometry, bands_for
 
-REGIONS = ('head', 'upper', 'lower', 'shoes')
-BANDS = ((0., .18), (.18, .55), (.55, .85), (.85, 1.))
 MEAN = torch.tensor([.48145466, .4578275, .40821073])[:, None, None]
 STD = torch.tensor([.26862954, .26130258, .27577711])[:, None, None]
 
@@ -61,11 +60,10 @@ class InterventionDataset(Dataset):
         self.two_types, self.family, self.severity = two_types, family, severity
         self.augment = augment
         self.geometry = None
+        self.geometry_records = None
         if geometry_manifest:
-            with open(geometry_manifest,encoding='utf-8') as f:self.geometry=json.load(f)
-            for name,regions in self.geometry.items():
-                if not isinstance(regions,list) or set(regions)-set(REGIONS):
-                    raise ValueError(f'Invalid verified band regions for {name}')
+            _, self.geometry_records = read_geometry(geometry_manifest)
+            self.geometry = {name: r['valid_regions'] for name, r in self.geometry_records.items() if r['split'] == split}
         self.epoch = 0
 
     def __len__(self):
@@ -79,13 +77,22 @@ class InterventionDataset(Dataset):
         image = image.convert('RGB').copy()
         if image.height < 8 or image.width < 1:
             raise ValueError(f'Image too small for four evidence bands: {name} {image.size}')
+        valid_regions = list(REGIONS) if self.geometry is None else self.geometry.get(str(name), [])
+        if self.geometry_records is not None and str(name) in self.geometry_records:
+            row = self.geometry_records[str(name)]
+            if row['split'] != self.split or row['bands'] != bands_for(*image.size):
+                raise ValueError(f'Geometry image split/size differs: {name}')
         if self.split == 'train' and self.augment:
             if rng.random() < .5:
                 image = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
             image = ImageEnhance.Brightness(image).enhance(rng.uniform(.8, 1.2))
-        target_region = rng.randrange(4)
-        outside = self.two_types and rng.random() < .5
-        region_index = (target_region + rng.randrange(1, 4)) % 4 if outside else target_region
+        # Preserve the diagnostic RNG path when no reviewed manifest was provided.
+        target_region = rng.randrange(4) if self.geometry is None else (
+            REGIONS.index(rng.choice(valid_regions)) if valid_regions else 0)
+        outside_requested = self.two_types and rng.random() < .5
+        outside = outside_requested and len(valid_regions) >= 2
+        region_index = ((target_region + rng.randrange(1, 4)) % 4 if self.geometry is None else
+                        REGIONS.index(rng.choice([g for g in valid_regions if g != REGIONS[target_region]]))) if outside else target_region
         region = REGIONS[region_index]
         y0, y1 = BANDS[region_index]
         w, h = image.size
@@ -103,7 +110,6 @@ class InterventionDataset(Dataset):
         if self.geometry is not None:
             # Manifest asserts validity of these exact fixed bands for this crop,
             # not simply whether a named body part exists somewhere in the image.
-            valid_regions=self.geometry.get(str(name),[])
             geometry_verified=region in valid_regions
             eligible=torch.tensor([self.mapping.get(a) in valid_regions for a in self.attributes])
             if not geometry_verified:eligible.zero_()
@@ -115,6 +121,13 @@ class InterventionDataset(Dataset):
             # Explicit outside intervention supervises only the selected target region.
             intact *= torch.tensor([self.mapping.get(a) == REGIONS[target_region] for a in self.attributes])
             rank_weights.zero_()
+        no_intervention = self.geometry is not None and (not valid_regions or (outside_requested and not outside))
+        if no_intervention:
+            occ = image.copy()  # Classification only; never corrupt an unverified region.
+            geometry_verified = False
+        if self.geometry is not None and outside_requested and not outside:
+            # Do not silently replace an unavailable outside pair with an inside objective.
+            known.zero_(); affected.zero_(); intact.zero_(); rank_weights.zero_()
         label = torch.as_tensor(labels, dtype=torch.float32)
         if not torch.all((label == 0) | (label == 1)):
             raise ValueError('This adapter requires fully binary labels; add an explicit missing-label adapter')
@@ -122,6 +135,7 @@ class InterventionDataset(Dataset):
                     labels=label, domain_token=torch.as_tensor(tokens), imgname=name,
                     vis_target=visibility, vis_valid=known, affected_mask=affected,
                     rank_weights=rank_weights,
-                    intact_mask=intact, intervention_type='outside' if outside else 'inside',
+                    intact_mask=intact, intervention_type='none' if no_intervention or (self.geometry is not None and outside_requested and not outside) else 'outside' if outside else 'inside',
                     region=region, target_region=REGIONS[target_region], severity=self.severity,
-                    geometry_verified=geometry_verified)
+                    geometry_verified=geometry_verified, outside_requested=outside_requested,
+                    supervision_active=bool(known.sum().item()))
